@@ -55,7 +55,7 @@ export default {
   methods: {
     async getStudentsData(id) {
       try {
-        const res = await fetch('http://localhost:3000/api/students/' + id);
+        const res = await fetch('https://student-api-ux6q.onrender.com/api/students' + id);
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const data = await res.json();
         this.model.student = {
@@ -71,7 +71,7 @@ export default {
 
     async updateStudent() {
       try {
-        const rest = await fetch('http://localhost:3000/api/students/' + this.studenId, {
+        const rest = await fetch('https://student-api-ux6q.onrender.com/api/students' + this.studenId, {
           method: 'PUT',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(this.model.student)
