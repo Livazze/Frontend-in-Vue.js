@@ -1,12 +1,15 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
+// Render backend adresiniz ve doğru endpoint yolu:
+const API_URL = 'https://student-api-ux6q.onrender.com/api/students' 
+// Not: Eğer backend'inizde rota "/students" ise yukarıyı 'https://student-api-ux6q.onrender.com/students' yapın.
+
 export const studentStore = defineStore('student', () => {
     const studentsData = ref([])
 
-    
     function getStudent() {
-        return fetch('https://student-api-ux6q.onrender.com')
+        return fetch(API_URL)
             .then(res => {
                 if (!res.ok) throw new Error('api error')
                 return res.json()
@@ -21,7 +24,7 @@ export const studentStore = defineStore('student', () => {
 
     // yeni öğrenci eklemek için
     function addStudent(studentData) {
-        return fetch('https://student-api-ux6q.onrender.com', {
+        return fetch(API_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(studentData)
@@ -31,18 +34,18 @@ export const studentStore = defineStore('student', () => {
         })
     }
 
-    // edit kısmı için id ile tek öğrenci getirr
+    // edit kısmı için id ile tek öğrenci getirir
     function getStudentById(id) {
-        return fetch('https://student-api-ux6q.onrender.com' + id)
+        return fetch(`${API_URL}/${id}`)
             .then(res => {
                 if (!res.ok) throw new Error('student not found')
                 return res.json()
             })
     }
 
-    // editte  öğrenciyi gğnceller
+    // editte öğrenciyi günceller
     function updateStudent(id, studentData) {
-        return fetch('https://student-api-ux6q.onrender.com' + id, {
+        return fetch(`${API_URL}/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(studentData)
@@ -59,4 +62,4 @@ export const studentStore = defineStore('student', () => {
         getStudentById,
         updateStudent
     }
-})   
+})
