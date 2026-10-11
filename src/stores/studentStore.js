@@ -6,7 +6,7 @@ export const studentStore = defineStore('student', () => {
 
     
     function getStudent() {
-        return fetch('http://localhost:3000/api/students')
+        return fetch('https://student-api-ux6q.onrender.com')
             .then(res => {
                 if (!res.ok) throw new Error('api error')
                 return res.json()
@@ -21,7 +21,7 @@ export const studentStore = defineStore('student', () => {
 
     // yeni öğrenci eklemek için
     function addStudent(studentData) {
-        return fetch('http://localhost:3000/api/students', {
+        return fetch('https://student-api-ux6q.onrender.com', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(studentData)
@@ -33,7 +33,7 @@ export const studentStore = defineStore('student', () => {
 
     // edit kısmı için id ile tek öğrenci getirr
     function getStudentById(id) {
-        return fetch('http://localhost:3000/api/students/' + id)
+        return fetch('https://student-api-ux6q.onrender.com' + id)
             .then(res => {
                 if (!res.ok) throw new Error('student not found')
                 return res.json()
@@ -42,7 +42,7 @@ export const studentStore = defineStore('student', () => {
 
     // editte  öğrenciyi gğnceller
     function updateStudent(id, studentData) {
-        return fetch('http://localhost:3000/api/students/' + id, {
+        return fetch('https://student-api-ux6q.onrender.com' + id, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(studentData)
