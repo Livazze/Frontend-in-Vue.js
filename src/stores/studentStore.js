@@ -1,9 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-// Render backend adresiniz ve doğru endpoint yolu:
 const API_URL = 'https://student-api-ux6q.onrender.com/api/students' 
-// Not: Eğer backend'inizde rota "/students" ise yukarıyı 'https://student-api-ux6q.onrender.com/students' yapın.
 
 export const studentStore = defineStore('student', () => {
     const studentsData = ref([])
