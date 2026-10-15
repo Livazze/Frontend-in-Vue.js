@@ -52,7 +52,7 @@ export default {
     methods: {
         async saveStudent(){
             try {
-                const res = await fetch('https://student-api-ux6q.onrender.com/api/students', {
+                const res = await fetch('http://127.0.0.1:3000/api/students', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(this.model.student)
