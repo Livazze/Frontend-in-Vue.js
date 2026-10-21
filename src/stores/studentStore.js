@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-const API_URL = 'http://127.0.0.1:3000/api/students'
+const API_URL = 'http://165.232.74.98:8080/api/students'
 
 export const studentStore = defineStore('student', () => {
     const studentsData = ref([])
