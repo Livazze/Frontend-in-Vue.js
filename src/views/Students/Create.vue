@@ -34,7 +34,7 @@
 //webten eklediklerimi db ye kaydekmet için
 
 <script>
-const API_URL = import.meta.env.API_URL;
+const VITE_API_URL = import.meta.env.VITE_API_URL;
 export default {
     name: 'studentCreate',
     data(){
@@ -52,7 +52,7 @@ export default {
     methods: {
         async saveStudent(){
             try {
-                const res = await fetch('${API_URL}', {
+                const res = await fetch('${VITE_API_URL}', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(this.model.student)

@@ -1,13 +1,13 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-const API_URL = import.meta.env.API_URL;
+const VITE_API_URL = import.meta.env.VITE_API_URL;
  
 export const studentStore = defineStore('student', () => {
     const studentsData = ref([])
 
     function getStudent() {
-        return fetch(API_URL)
+        return fetch('${VITE_API_URL}/api/students')
             .then(res => {
                 if (!res.ok) throw new Error('api error')
                 return res.json()
@@ -22,7 +22,7 @@ export const studentStore = defineStore('student', () => {
 
     // yeni öğrenci eklemek için
     function addStudent(studentData) {
-        return fetch(API_URL, {
+        return fetch('${VITE_API_URL}/api/students', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(studentData)
@@ -34,7 +34,7 @@ export const studentStore = defineStore('student', () => {
 
     // edit kısmı için id ile tek öğrenci getirir
     function getStudentById(id) {
-        return fetch(`${API_URL}/${id}`)
+        return fetch(`${VITE_API_URL}/api/students/${id}`)
             .then(res => {
                 if (!res.ok) throw new Error('student not found')
                 return res.json()
@@ -43,7 +43,7 @@ export const studentStore = defineStore('student', () => {
 
     // editte öğrenciyi günceller
     function updateStudent(id, studentData) {
-        return fetch(`${API_URL}/${id}`, {
+        return fetch(`${VITE_API_URL}/api/students/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(studentData)

@@ -34,7 +34,7 @@
 //webten eklediklerimi db ye kaydekmet için
 
 <script>
-const API_URL = import.meta.env.API_URL;
+const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 export default {
   name: 'studentEdit',
@@ -57,7 +57,7 @@ export default {
   methods: {
     async getStudentsData(id) {
       try {
-        const res = await fetch('${API_URL}/${id}');
+        const res = await fetch('${VITE_API_URL}/${id}');
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const data = await res.json();
         this.model.student = {
@@ -73,7 +73,7 @@ export default {
 
     async updateStudent() {
       try {
-        const res = await fetch(`${apiUrl}/${this.studentId}`, {
+        const res = await fetch(`${VITE_API_URL}/${this.studentId}`, {
           method: 'PUT',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(this.model.student)
